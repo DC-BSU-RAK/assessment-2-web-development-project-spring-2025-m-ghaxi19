@@ -1,0 +1,216 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products - MediCare Pharmacy</title>
+  <link rel="stylesheet" href="index style.css">
+  <style>
+    .cart-button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .cart-button:hover {
+      background-color: #218838;
+    }
+
+    .view-cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      background-color: white;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      z-index: 1000;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .cart-modal h3 {
+      margin-top: 0;
+    }
+
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MediCare Pharmacy</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tips.html">Health Tips</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <button class="view-cart" onclick="showCart()">View Cart 🛒</button>
+
+  <section class="products-page">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="paracetamol-500-mg.jpg" alt="Paracetamol">
+        <h3>Paracetamol 500mg</h3>
+        <p>Effective for fever and pain relief.</p>
+        <p class="price">Aed 11.99</p>
+        <button class="cart-button" onclick="addToCart('Paracetamol 500mg', 11.99)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="vitaminc.jpg" alt="Vitamin C Tablets">
+        <h3>Vitamin C Tablets</h3>
+        <p>Boosts immunity and fights fatigue.</p>
+        <p class="price">Aed 21.99</p>
+        <button class="cart-button" onclick="addToCart('Vitamin C Tablets', 21.99)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="sanitizer.jpeg" alt="Hand Sanitizer">
+        <h3>Hand Sanitizer (100ml)</h3>
+        <p>Kills 99.9% of germs without water.</p>
+        <p class="price">Aed 4.50</p>
+        <button class="cart-button" onclick="addToCart('Hand Sanitizer (100ml)', 4.50)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="bpmonitor.jpg" alt="Blood Pressure Monitor">
+        <h3>Blood Pressure Monitor</h3>
+        <p>Digital BP monitor with large display.</p>
+        <p class="price">Aed 59.99</p>
+        <button class="cart-button" onclick="addToCart('Blood Pressure Monitor', 59.99)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="cough.jpg" alt="Cough Syrup">
+        <h3>Cough Syrup (120ml)</h3>
+        <p>Soothes dry and wet coughs.</p>
+        <p class="price">Aed 15.99</p>
+        <button class="cart-button" onclick="addToCart('Cough Syrup (120ml)', 15.99)">Add to Cart</button>
+      </div>
+     
+      <div class="product">
+  <img src="thero.jpg" alt="Digital Thermometer">
+  <h3>Digital Thermometer</h3>
+  <p>Fast and accurate body temperature readings.</p>
+  <p class="price">Aed 13.99</p>
+  <button class="cart-button" onclick="addToCart('Digital Thermometer', 19.99)">Add to Cart</button>
+</div>
+
+<div class="product">
+  <img src="mask.jpg" alt="Surgical Face Mask">
+  <h3>Surgical Face Mask (Pack of 50)</h3>
+  <p>Protective disposable face masks.</p>
+  <p class="price">Aed 15.00</p>
+  <button class="cart-button" onclick="addToCart('Surgical Face Mask (Pack of 50)', 25.00)">Add to Cart</button>
+</div>
+
+<div class="product">
+  <img src="antacid.jpg" alt="Antacid Tablets">
+  <h3>Antacid Tablets</h3>
+  <p>Relieves heartburn and indigestion.</p>
+  <p class="price">Aed 10.50</p>
+  <button class="cart-button" onclick="addToCart('Antacid Tablets', 10.50)">Add to Cart</button>
+</div>
+
+<div class="product">
+  <img src="inhaler.jpeg" alt="Asthma Inhaler">
+  <h3>Asthma Inhaler</h3>
+  <p>Quick relief from breathing difficulty and asthma symptoms.</p>
+  <p class="price">Aed 35.75</p>
+  <button class="cart-button" onclick="addToCart('Asthma Inhaler', 35.75)">Add to Cart</button>
+</div>
+
+<div class="product">
+  <img src="bandage.jpg" alt="First Aid Bandage">
+  <h3>First Aid Bandage</h3>
+  <p>Elastic support bandage for strains and sprains.</p>
+  <p class="price">Aed 5.00</p>
+  <button class="cart-button" onclick="addToCart('First Aid Bandage', 6.00)">Add to Cart</button>
+</div>
+
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div class="cart-overlay" onclick="closeCart()"></div>
+  <div class="cart-modal" id="cartModal">
+    <h3>Your Cart</h3>
+    <ul id="cartItems"></ul>
+    <p><strong>Total:</strong> Aed <span id="cartTotal">0.00</span></p>
+    <button onclick="closeCart()">Close</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MediCare Pharmacy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const cart = [];
+
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      alert(product + ' added to cart!');
+    }
+
+    function showCart() {
+      const cartModal = document.getElementById('cartModal');
+      const cartItems = document.getElementById('cartItems');
+      const cartOverlay = document.querySelector('.cart-overlay');
+      const cartTotal = document.getElementById('cartTotal');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.product} - Aed ${item.price.toFixed(2)}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+
+      cartTotal.textContent = total.toFixed(2);
+      cartModal.style.display = 'block';
+      cartOverlay.style.display = 'block';
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').style.display = 'none';
+      document.querySelector('.cart-overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
